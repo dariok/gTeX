@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <title>googleDocs2TEI2TeX</title>
+    </head>
+    <body>
+        <form action="convert.xql">
+            <label for="fileid" style="display: inline-block; width: 180px;">google file ID: </label>
+            <input type="text" name="fileid" /><br />
+            <label for="apikey" style="display: inline-block; width: 180px;">google API key: </label>
+            <input type="text" name="apikey" /><br />
+            <label for="target" style="display: inline-block; width: 180px;">process to TEI or TeX? </label>
+            <select name="target">
+                <option>TEI</option>
+                <option>TeX</option>
+            </select><br />
+            <input type="submit" />
+        </form>
+        <p>Get google API key: <a href="https://elfsight.com/blog/2020/03/how-to-use-google-drive-api-and-get-an-api-key/">guide</a></p>
+    </body>
+</html>
