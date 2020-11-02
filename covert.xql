@@ -50,4 +50,11 @@ let $incoming :=
     $unpack
   }</pkg:package>
 
-return $incoming
+let $attr := <attributes><attr name="http://saxon.sf.net/feature/recoveryPolicyName" value="recoverSilently" /></attributes>
+let $params := <parameters/>
+
+let $w1 := transform:transform($incoming, doc('w2tei/wt0.xsl'), $params)
+let $w2 := transform:transform($w1, doc('w2tei/wt1.xsl'), $params)
+let $w3 := transform:transform($w2, doc('w2tei/wt2.xsl'), $params) 
+
+return $w3
