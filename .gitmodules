@@ -1,0 +1,3 @@
+[submodule "w2tei"]
+	path = w2tei
+	url = git@github.com:dariok/w2tei.git
