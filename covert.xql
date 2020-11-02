@@ -1,5 +1,6 @@
 xquery version "3.1";
 
+declare namespace pkg="http://schemas.microsoft.com/office/2006/xmlPackage";
 declare namespace tei="http://www.tei-c.org/ns/1.0";
 
 let $fileid := request:get-parameter("fileid", "")
@@ -33,15 +34,20 @@ switch ($path)
 }
 
 let $entry-data := function ($path as xs:string, $data-type as xs:string, $data as item()?, $param as item()*) {
-  $data
+  <pkg:part pkg:name="/{$path}">
+    <pkg:xmlData>
+      {
+        $data
+      }
+    </pkg:xmlData>
+  </pkg:part>
 }
 (: end helper functions for unzip :)
 
 let $unpack := compression:unzip($data, $filter, (), $entry-data, ())
 let $incoming :=
-  <pack>{
-    for $item in $unpack
-      return $item}
-  </pack>
+  <pkg:package>{
+    $unpack
+  }</pkg:package>
 
 return $incoming
