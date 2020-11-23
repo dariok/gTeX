@@ -58,6 +58,7 @@
   </xsl:template>
   
   <xsl:template match="tei:p[not(@rendition)]">
+  	<xsl:apply-templates select="@style" />
         <xsl:text>
   \par\relax </xsl:text>
     <xsl:call-template name="makeLabel"/>
@@ -66,6 +67,7 @@
       <xsl:with-param name="location">e</xsl:with-param>
     </xsl:call-template>
   </xsl:template>
+  
   <xsl:template match="tei:p[@rendition]">
     <xsl:text>
 </xsl:text>
@@ -77,15 +79,15 @@
       <xsl:when test="@rendition = 'Heading2'">
         <xsl:text>\subsection{</xsl:text>
       </xsl:when>
-    	<xsl:when test="@rendition = 'Heading3'">
-    		<xsl:text>\subsubsection{</xsl:text>
-    	</xsl:when>
-    	<xsl:when test="@rendition = 'Heading4'">
-    		<xsl:text>\paragraph{</xsl:text>
-    	</xsl:when>
-    	<xsl:when test="@rendition = 'Heading5'">
-    		<xsl:text>\subparagraph{</xsl:text>
-    	</xsl:when>
+      <xsl:when test="@rendition = 'Heading3'">
+        <xsl:text>\subsubsection{</xsl:text>
+      </xsl:when>
+      <xsl:when test="@rendition = 'Heading4'">
+        <xsl:text>\paragraph{</xsl:text>
+      </xsl:when>
+      <xsl:when test="@rendition = 'Heading5'">
+        <xsl:text>\subparagraph{</xsl:text>
+      </xsl:when>
     </xsl:choose>
     
     <!-- try to remove pre-existing section numbering -->
@@ -101,6 +103,14 @@
       </xsl:otherwise>
     </xsl:choose>
     <xsl:text>}</xsl:text>
+  </xsl:template>
+  
+  <xsl:template match="@style">
+    <xsl:choose>
+      <xsl:when test=". eq 'b:1'">
+        <xsl:text>\beforeBoldParagraph{}</xsl:text>
+      </xsl:when>
+    </xsl:choose>
   </xsl:template>
   
   <xsl:template match="@xml:id">
