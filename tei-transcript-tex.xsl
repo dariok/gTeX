@@ -98,6 +98,7 @@
 		<xsl:value-of select="gtex:replaceAll(., $from, $to)" />
 	</xsl:template>
 	
+	<xsl:template match="tei:anchor[@type eq 'bookmarkStart']" />
 	<xsl:template match="tei:anchor">
 		<xsl:choose>
 			<xsl:when test="@type">
