@@ -1,9 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xsl:stylesheet xmlns:tei="http://www.tei-c.org/ns/1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+<xsl:stylesheet
+	xmlns:gtex="https://github.com/dariok/gTeX"
+	xmlns:tei="http://www.tei-c.org/ns/1.0"
+	xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
 	exclude-result-prefixes="tei" version="3.0">
 	<!-- Gemeinsame templates importieren. Dies betrifft: text(), @*, ptr, rs, term -->
 	
-	<xsl:import href="tei-common-tex.xsl"/>
 	<xsl:output method="text" encoding="UTF-8"/>
 	
 	<xsl:template match="tei:teiHeader">
@@ -70,14 +73,14 @@
 		</xsl:call-template>
 	</xsl:template>
 	
-	<xsl:function name="hab:replaceAll" as="xs:string?">
+	<xsl:function name="gtex:replaceAll" as="xs:string?">
 		<xsl:param name="input" as ="xs:string?" />
 		<xsl:param name="find" as="xs:string*" />
 		<xsl:param name="repl" as="xs:string*" />
 		
 		<xsl:sequence select="
 			if (count($find) > 0)
-			then hab:replaceAll(
+			then gtex:replaceAll(
 				replace($input, $find[1], $repl[1]),
 				$find[position() > 1],
 				$repl[position() > 1])
@@ -92,7 +95,7 @@
 	<xsl:template match="text() | @*">
 		<xsl:variable name="from" select="('#', '&amp;', '%', '_', 'ℂ', '\s{2,}')" />
 		<xsl:variable name="to" select="('\\#', '\\&amp;', '\\%', '\\_', '{\\foreign ℂ}', ' ')" />
-		<xsl:value-of select="hab:replaceAll(., $from, $to)" />
+		<xsl:value-of select="gtex:replaceAll(., $from, $to)" />
 	</xsl:template>
 	
 	<xsl:template match="tei:anchor">
@@ -433,16 +436,11 @@
 	</xsl:template>
 	
 	<xsl:template name="makeLabel">
-		<xsl:param name="location" select="''"/>
-		<xsl:param name="elem" select="''"/>
-		<xsl:param name="targetElement" />
-		
-		<xsl:variable name="id">
-			<xsl:value-of select="generate-id($targetElement)" />
-		</xsl:variable>
+		<xsl:param name="location" select="''" />
+		<xsl:param name="targetElement" select="." />
 		
 		<xsl:text>\label{</xsl:text>
-		<xsl:value-of select="concat($id, $location)" />
+		<xsl:value-of select="concat(generate-id($targetElement), $location)" />
 		<xsl:text>}</xsl:text>
 	</xsl:template>
 </xsl:stylesheet>
