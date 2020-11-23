@@ -80,6 +80,12 @@
     	<xsl:when test="@rendition = 'Heading3'">
     		<xsl:text>\subsubsection{</xsl:text>
     	</xsl:when>
+    	<xsl:when test="@rendition = 'Heading4'">
+    		<xsl:text>\paragraph{</xsl:text>
+    	</xsl:when>
+    	<xsl:when test="@rendition = 'Heading5'">
+    		<xsl:text>\subparagraph{</xsl:text>
+    	</xsl:when>
     </xsl:choose>
     
     <xsl:choose>
