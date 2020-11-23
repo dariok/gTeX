@@ -448,9 +448,9 @@
     <xsl:text>}</xsl:text>
   </xsl:template>
   
-  <xsl:template match="tei:list">
+  <xsl:template match="tei:list[tei:label]">
     <xsl:text>
-\begin{</xsl:text>
+\beforeList{}\begin{</xsl:text>
     <xsl:choose>
       <xsl:when test="@type = 'ordered'">
         <xsl:text>enumerate</xsl:text>
@@ -472,9 +472,10 @@
         <xsl:text>itemize</xsl:text>
       </xsl:otherwise>
     </xsl:choose>
-    <xsl:text>}</xsl:text>
+    <xsl:text>}\afterList{}</xsl:text>
   </xsl:template>
   
+  <xsl:template match="tei:label" />
   <xsl:template match="tei:item">
     <xsl:text>
   \item{</xsl:text>
