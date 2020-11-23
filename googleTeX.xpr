@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="22.1">
+    <meta>
+        <filters directoryPatterns="" filePatterns="\QgoogleTeX.xpr\E" positiveFilePatterns="" showHiddenFiles="false"/>
+        <options/>
+    </meta>
+    <projectTree name="googleTeX.xpr">
+        <folder path="."/>
+        <folder path="../../Projektdateien/google-doc2latex/"/>
+    </projectTree>
+</project>
