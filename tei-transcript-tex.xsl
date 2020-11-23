@@ -57,7 +57,7 @@
 		<xsl:text>}</xsl:text>
 	</xsl:template>
 	
-	<xsl:template match="tei:p">
+	<xsl:template match="tei:p[not(@rendition)]">
 				<xsl:text>
 \par\relax </xsl:text>
 		<xsl:call-template name="makeLabel"/>
@@ -65,6 +65,28 @@
 		<xsl:call-template name="makeLabel">
 			<xsl:with-param name="location">e</xsl:with-param>
 		</xsl:call-template>
+	</xsl:template>
+	<xsl:template match="tei:p[@rendition]">
+		<xsl:text>
+</xsl:text>
+		<xsl:choose>
+			<xsl:when test="@rendition = 'Heading1'">
+				<xsl:text>\section{</xsl:text>
+			</xsl:when>
+			<xsl:when test="@rendition = 'Heading2'">
+				<xsl:text>\subsection{</xsl:text>
+			</xsl:when>
+		</xsl:choose>
+		
+		<xsl:choose>
+			<xsl:when test="tei:space">
+				<xsl:apply-templates select="tei:space/following-sibling::node()" />
+			</xsl:when>
+			<xsl:otherwise>
+				<xsl:apply-templates />
+			</xsl:otherwise>
+		</xsl:choose>
+		<xsl:text>}</xsl:text>
 	</xsl:template>
 	
 	<xsl:template match="@xml:id">
