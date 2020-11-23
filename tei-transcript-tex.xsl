@@ -490,4 +490,10 @@
     <xsl:value-of select="concat(generate-id($targetElement), $location)" />
     <xsl:text>}</xsl:text>
   </xsl:template>
+	
+	<xsl:template match="tei:space">
+		<xsl:text>\spaceCommand{</xsl:text>
+		<xsl:value-of select="@width" />
+		<xsl:text>}</xsl:text>
+	</xsl:template>
 </xsl:stylesheet>
