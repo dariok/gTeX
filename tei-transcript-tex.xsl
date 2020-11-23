@@ -58,7 +58,7 @@
   </xsl:template>
   
   <xsl:template match="tei:p[not(@rendition)]">
-  	<xsl:apply-templates select="@style" />
+    <xsl:apply-templates select="@style" />
         <xsl:text>
   \par\relax </xsl:text>
     <xsl:call-template name="makeLabel"/>
@@ -383,9 +383,9 @@
   
   <xsl:template match="tei:table">
     <xsl:text>\microtypesetup{protrusion=false}
-\begin{tabularx}{\textwidth}{@{}|d|s|s|s|@{}|}</xsl:text>
-<!--    <xsl:sequence select="for $i in (1 to @cols) return 'l|'"/>-->
-<!--    <xsl:text>@{}}</xsl:text>-->
+\begin{tabularx}{\textwidth}{@{}|</xsl:text>
+    <xsl:sequence select="for $i in (1 to @cols) return 'p{' || (1 - @cols * 0.015) div number(@cols) || '\textwidth}|'"/>
+    <xsl:text>@{}}</xsl:text>
     <xsl:text>
   \hline\rowcolor{lightgray}</xsl:text>
     <xsl:apply-templates />
@@ -393,9 +393,9 @@
     <xsl:text>\end{tabularx}\microtypesetup{protrusion=true}</xsl:text>
   </xsl:template>
   <xsl:template match="tei:row">
-    <xsl:if test="not(following-sibling::tei:row)">
+    <!--<xsl:if test="not(following-sibling::tei:row)">
       <xsl:text>\rowcolor{lightgray}</xsl:text>
-    </xsl:if>
+    </xsl:if>-->
     <xsl:apply-templates/>
     <!--<xsl:if test="following-sibling::tei:row">-->
       <xsl:text>\\
@@ -441,6 +441,9 @@
       </xsl:otherwise>
     </xsl:choose>
   </xsl:template>
+  <!--<xsl:template match="tei:cell/tei:lb">
+    <xsl:text>\newline </xsl:text>
+  </xsl:template>-->
   
   <xsl:template match="tei:title[parent::tei:p or parent::tei:note]">
     <xsl:text>\textit{</xsl:text>
@@ -491,10 +494,10 @@
     <xsl:value-of select="concat(generate-id($targetElement), $location)" />
     <xsl:text>}</xsl:text>
   </xsl:template>
-	
-	<xsl:template match="tei:space">
-		<xsl:text>\spaceCommand{</xsl:text>
-		<xsl:value-of select="@width" />
-		<xsl:text>}</xsl:text>
-	</xsl:template>
+  
+  <xsl:template match="tei:space">
+    <xsl:text>\spaceCommand{</xsl:text>
+    <xsl:value-of select="@width" />
+    <xsl:text>}</xsl:text>
+  </xsl:template>
 </xsl:stylesheet>
