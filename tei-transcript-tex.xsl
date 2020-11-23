@@ -352,7 +352,7 @@
     </xsl:if>
   </xsl:template>
   
-  <xsl:template match="tei:ref">
+  <xsl:template match="tei:ref[string-length(normalize-space()) gt 0]">
     <xsl:text>\url{</xsl:text>
     <xsl:apply-templates />
     <xsl:text>}</xsl:text>
