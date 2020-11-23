@@ -77,6 +77,9 @@
       <xsl:when test="@rendition = 'Heading2'">
         <xsl:text>\subsection{</xsl:text>
       </xsl:when>
+    	<xsl:when test="@rendition = 'Heading3'">
+    		<xsl:text>\subsubsection{</xsl:text>
+    	</xsl:when>
     </xsl:choose>
     
     <xsl:choose>
