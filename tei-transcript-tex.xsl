@@ -61,7 +61,7 @@
 				<xsl:text>
 \par\relax </xsl:text>
 		<xsl:call-template name="makeLabel"/>
-		<xsl:apply-templates select="*" />
+		<xsl:apply-templates />
 		<xsl:call-template name="makeLabel">
 			<xsl:with-param name="location">e</xsl:with-param>
 		</xsl:call-template>

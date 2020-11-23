@@ -6,6 +6,7 @@
     </meta>
     <projectTree name="googleTeX.xpr">
         <folder path="."/>
+        <folder path="../w2tei/"/>
         <folder path="../../Projektdateien/google-doc2latex/"/>
     </projectTree>
 </project>
