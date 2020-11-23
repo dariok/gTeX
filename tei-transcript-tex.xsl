@@ -51,7 +51,7 @@
   </xsl:template>
   
   <xsl:template match="tei:note">
-    <xsl:text>\footnoteB
+    <xsl:text>\footnote
     {</xsl:text>
     <xsl:apply-templates/>
     <xsl:text>}</xsl:text>
