@@ -57,7 +57,7 @@
     <xsl:text>}</xsl:text>
   </xsl:template>
   
-  <xsl:template match="tei:p[not(@style)]">
+  <xsl:template match="tei:p[not(@rendition)]">
         <xsl:text>
   \par\relax </xsl:text>
     <xsl:call-template name="makeLabel"/>
