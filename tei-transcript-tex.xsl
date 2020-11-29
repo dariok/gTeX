@@ -88,16 +88,20 @@
 \beforeSectionHeading{}\section{</xsl:text>
       </xsl:when>
       <xsl:when test="@rendition = 'Heading2'">
-        <xsl:text>\beforeSubsectionHeading{}\subsection{</xsl:text>
+        <xsl:text>
+\beforeSubsectionHeading{}\subsection{</xsl:text>
       </xsl:when>
       <xsl:when test="@rendition = 'Heading3'">
-        <xsl:text>\beforeSubsubsectionHeading{}\subsubsection{</xsl:text>
+        <xsl:text>
+\beforeSubsubsectionHeading{}\subsubsection{</xsl:text>
       </xsl:when>
       <xsl:when test="@rendition = 'Heading4'">
-        <xsl:text>\beforeParagraphHeading{}\paragraph{</xsl:text>
+        <xsl:text>
+\beforeParagraphHeading{}\paragraph{</xsl:text>
       </xsl:when>
       <xsl:when test="@rendition = 'Heading5'">
-        <xsl:text>\beforeSubparagraphHeading{}\subparagraph{</xsl:text>
+        <xsl:text>
+\beforeSubparagraphHeading{}\subparagraph{</xsl:text>
       </xsl:when>
     </xsl:choose>
     
