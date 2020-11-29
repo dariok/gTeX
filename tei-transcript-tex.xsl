@@ -53,16 +53,15 @@
   <xsl:template match="tei:note">
     <xsl:text>\footnote
     {</xsl:text>
-    <xsl:apply-templates/>
+    <xsl:apply-templates select="*" />
     <xsl:text>}</xsl:text>
   </xsl:template>
   
-  <xsl:template match="tei:p[not(@rendition)]">
-    <xsl:apply-templates select="@style" />
+  <xsl:template match="tei:p[not(@style)]">
         <xsl:text>
   \par\relax </xsl:text>
     <xsl:call-template name="makeLabel"/>
-    <xsl:apply-templates />
+    <xsl:apply-templates select="*" />
     <xsl:call-template name="makeLabel">
       <xsl:with-param name="location">e</xsl:with-param>
     </xsl:call-template>
@@ -102,7 +101,7 @@
         <xsl:value-of select="substring-after(normalize-space(), ' ')" />
       </xsl:when>
       <xsl:otherwise>
-        <xsl:apply-templates />
+        <xsl:apply-templates select="*" />
       </xsl:otherwise>
     </xsl:choose>
     <xsl:text>}</xsl:text>
@@ -247,29 +246,32 @@
     <xsl:text>[…]</xsl:text>
   </xsl:template>
   
-  <xsl:template match="tei:hi | tei:seg[@rend] | tei:ab[@style]">
+  <xsl:template match="tei:hi">
     <xsl:choose>
-      <xsl:when test="@style='font-style: italic;'
-        or @rend='italics' or starts-with(@rend, 'i:1;') or starts-with(@style, 'i:1;')">
+      <xsl:when test="contains(@style,'font-style: italic;') and contains(@style, 'font-weight: bold')">
+        <xsl:text>\textbf{\textit{</xsl:text>
+        <xsl:apply-templates />
+        <xsl:text>}}</xsl:text>
+      </xsl:when>
+      <xsl:when test="contains(@style,'font-style: italic;')">
         <xsl:text>\textit{</xsl:text>
         <xsl:apply-templates />
         <xsl:text>}</xsl:text>
       </xsl:when>
-      <xsl:when test="@rend = 'bold' or starts-with(@rend, 'b:1; sz') or starts-with(@style, 'b:1; sz')">
+      <xsl:when test="contains(@style, 'font-weight: bold')">
         <xsl:text>\textbf{</xsl:text>
         <xsl:apply-templates />
         <xsl:text>}</xsl:text>
       </xsl:when>
-      <xsl:when test="@rend='super'">
-        <xsl:text>\textsuperscript{</xsl:text><xsl:apply-templates /><xsl:text>}</xsl:text>
-      </xsl:when>
-      <xsl:when test="@rend='sub'">
-        <xsl:text>\textsubscript{</xsl:text><xsl:apply-templates /><xsl:text>}</xsl:text>
-      </xsl:when>
-      <xsl:when test="contains(@rend, 'b:1; i:1;')">
-        <xsl:text>\textbf{\textit{</xsl:text>
+      <xsl:when test="contains(@style, 'vertical-align: super')">
+        <xsl:text>\textsuperscript{</xsl:text>
         <xsl:apply-templates />
-        <xsl:text>}}</xsl:text>
+        <xsl:text>}</xsl:text>
+      </xsl:when>
+      <xsl:when test="contains(@style, 'vertical-align: sub')">
+        <xsl:text>\textsubscript{</xsl:text>
+        <xsl:apply-templates />
+        <xsl:text>}</xsl:text>
       </xsl:when>
       <xsl:otherwise>
         <xsl:apply-templates />
