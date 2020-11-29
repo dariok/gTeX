@@ -57,6 +57,7 @@ then
         $unpack
       }</pkg:package>
     
+    let $debug := xmldb:store("/db/apps/googleTex", "word.xml", $incoming)
     let $attr := <attributes><attr name="http://saxon.sf.net/feature/recoveryPolicyName" value="recoverSilently" /></attributes>
     let $params := <parameters/>
     
