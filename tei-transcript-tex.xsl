@@ -95,6 +95,9 @@
       <xsl:when test="tei:space">
         <xsl:apply-templates select="tei:space/following-sibling::node()" />
       </xsl:when>
+      <xsl:when test="tei:hi/tei:space">
+        <xsl:apply-templates select="descendant::tei:space/following-sibling::node()" />
+      </xsl:when>
       <xsl:when test="matches(normalize-space(), '^\d\.')">
         <xsl:value-of select="substring-after(normalize-space(), ' ')" />
       </xsl:when>
