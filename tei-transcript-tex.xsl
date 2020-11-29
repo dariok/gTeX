@@ -58,13 +58,25 @@
   </xsl:template>
   
   <xsl:template match="tei:p[not(@rendition)]">
-        <xsl:text>
-  \par\relax </xsl:text>
+    <xsl:apply-templates select="@style" />
+    <xsl:text>\par\relax </xsl:text>
     <xsl:call-template name="makeLabel"/>
     <xsl:apply-templates select="*" />
     <xsl:call-template name="makeLabel">
       <xsl:with-param name="location">e</xsl:with-param>
     </xsl:call-template>
+  </xsl:template>
+  <xsl:template match="tei:p/@style">
+    <xsl:choose>
+      <xsl:when test="contains(., 'bold')">
+        <xsl:text>
+\beforeBoldParagraph{}</xsl:text>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:text>
+</xsl:text>
+      </xsl:otherwise>
+    </xsl:choose>
   </xsl:template>
   
   <xsl:template match="tei:p[@rendition]">
@@ -105,14 +117,6 @@
       </xsl:otherwise>
     </xsl:choose>
     <xsl:text>}</xsl:text>
-  </xsl:template>
-  
-  <xsl:template match="@style">
-    <xsl:choose>
-      <xsl:when test=". eq 'b:1'">
-        <xsl:text>\beforeBoldParagraph{}</xsl:text>
-      </xsl:when>
-    </xsl:choose>
   </xsl:template>
   
   <xsl:template match="@xml:id">
