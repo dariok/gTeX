@@ -446,9 +446,11 @@
       </xsl:otherwise>
     </xsl:choose>
   </xsl:template>
-  <!--<xsl:template match="tei:cell/tei:lb">
-    <xsl:text>\newline </xsl:text>
-  </xsl:template>-->
+  
+  <xsl:template match="tei:lb">
+    <xsl:text>
+    \newline </xsl:text>
+  </xsl:template>
   
   <xsl:template match="tei:title[parent::tei:p or parent::tei:note]">
     <xsl:text>\textit{</xsl:text>
