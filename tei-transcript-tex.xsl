@@ -439,7 +439,9 @@
         <xsl:text>} </xsl:text>
       </xsl:when>
       <xsl:when test="@cols">
-        <xsl:text>\multicolumn2{l}{</xsl:text>
+        <xsl:text>\multicolumn{</xsl:text>
+        <xsl:value-of select="@cols"/>
+        <xsl:text>}{l|}{</xsl:text>
         <xsl:apply-templates />
         <xsl:text>}</xsl:text>
       </xsl:when>
