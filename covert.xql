@@ -1,12 +1,9 @@
 xquery version "3.1";
 
-declare namespace http     = "http://expath.org/ns/http-client";
+declare namespace http   = "http://expath.org/ns/http-client";
 declare namespace output = "http://www.w3.org/2010/xslt-xquery-serialization";
 declare namespace pkg    = "http://schemas.microsoft.com/office/2006/xmlPackage";
 declare namespace tei    = "http://www.tei-c.org/ns/1.0";
-
-declare option output:method "text";
-declare option output:media-type "text/text";
 
 let $fileid := request:get-parameter("fileid", "")
 let $target := request:get-parameter("target", "")
@@ -65,8 +62,15 @@ then
     let $w2 := transform:transform($w1, doc('w2tei/wt1.xsl'), $params)
     let $w3 := transform:transform($w2, doc('w2tei/wt2.xsl'), $params) 
     
-    let $tex := transform:transform($w3, doc("tei-transcript-tex.xsl"), $params)
     
-    return $tex
+    return if ( $target eq 'incoming' )
+        then $incoming
+        else if ( $target eq 'TEI')
+        then $w3
+        else (
+            util:declare-option("output:method", "text"),
+            response:set-header("Content-Type", "application/x-latex"),
+            transform:transform($w3, doc("tei-transcript-tex.xsl"), $params)
+        )
 else
     util:base64-decode($exportedDoc[2])
