@@ -65,7 +65,7 @@ then
     
     return if ( $target eq 'incoming' )
         then $incoming
-        else if ( $target eq 'TEI')
+        else if ( $target eq 'tei')
         then $w3
         else (
             util:declare-option("output:method", "text"),
