@@ -59,7 +59,8 @@
   
   <xsl:template match="tei:p[not(@rendition)]">
     <xsl:apply-templates select="@style" />
-    <xsl:text>\par\relax </xsl:text>
+    <xsl:text>
+\par\relax </xsl:text>
     <xsl:call-template name="makeLabel"/>
     <xsl:apply-templates select="*" />
     <xsl:call-template name="makeLabel">
@@ -421,10 +422,9 @@
       <xsl:text>\hline</xsl:text>
     </xsl:if>-->
     <xsl:if test="following-sibling::tei:row">
-      <xsl:text>\hline</xsl:text>
+      <xsl:text>\hline
+      </xsl:text>
     </xsl:if>
-    <xsl:text>
-    </xsl:text>
   </xsl:template>
   <xsl:template match="tei:cell">
     <xsl:if test="preceding-sibling::tei:cell">
@@ -457,7 +457,7 @@
     </xsl:choose>
   </xsl:template>
   
-  <xsl:template match="tei:lb">
+  <xsl:template match="tei:lb[preceding-sibling::*]">
     <xsl:text>
     \newline </xsl:text>
   </xsl:template>
