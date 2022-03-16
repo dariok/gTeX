@@ -468,7 +468,7 @@
     <xsl:text>}</xsl:text>
   </xsl:template>
   
-  <xsl:template match="tei:list[tei:label]">
+  <xsl:template match="tei:list">
     <xsl:text>
 \beforeList{}\begin{</xsl:text>
     <xsl:choose>
