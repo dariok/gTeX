@@ -1,0 +1,99 @@
+\documentclass[paper=a4,11pt,twoside]{scrartcl}
+% 
+\usepackage[xetex]{geometry}
+\geometry{outer=20mm, inner=25mm, bottom=20mm, footskip=11mm,
+  marginparsep=0mm, marginparwidth=0mm, top=15mm}%, showframe}
+
+\usepackage{fontspec}
+\setmainfont[Ligatures=TeX,
+  UprightFeatures={
+    SmallCapsFont={Junicode},
+    SmallCapsFeatures={Letters=SmallCaps,LetterSpace=6},
+  }]{Junicode}
+\usepackage[protrusion=true]{microtype}
+
+\usepackage{polyglossia}
+\setdefaultlanguage[spelling=new]{german}
+
+%\usepackage{csquotes}
+%\MakeAutoQuote{"}{"}
+
+\usepackage[hyphens]{url}
+\usepackage{hyperref}
+\urlstyle{same}
+
+\deffootnote{1.5em}{1em}{%
+\makebox[1.5em][l]{\thefootnotemark}%
+}
+
+\usepackage{enumitem}
+\usepackage{graphicx}
+\usepackage[table]{xcolor}
+
+\renewcommand{\arraystretch}{1.25}
+\setlength{\tabcolsep}{0.3em}
+\usepackage{longtable}
+\usepackage{tabularx}
+\usepackage{ltablex}
+\setlength\LTpre{0.25\baselineskip}
+\newcolumntype{d}{>{\hsize=1.25\hsize}X}
+\newcolumntype{s}{>{\raggedright\arraybackslash\hsize=.25\hsize}X}%
+
+\setcounter{secnumdepth}{\paragraphnumdepth}
+
+\RedeclareSectionCommand[%
+  afterskip=0.25\baselineskip plus .15\baselineskip minus .15\baselineskip,
+  beforeskip=0.8\baselineskip,
+  afterindent=false
+]{subsubsection}
+\RedeclareSectionCommand[%
+  afterskip=0.1\baselineskip plus .15\baselineskip minus .15\baselineskip,
+  beforeskip=0.5\baselineskip,
+  indent=0pt
+]{paragraph}
+\RedeclareSectionCommand[%
+  afterskip=0.05\baselineskip,
+  beforeskip=0.25\baselineskip plus .15\baselineskip minus .15\baselineskip,
+  font=\normalfont\itshape,
+  indent=0pt
+]{subparagraph}
+
+\newcommand{\beforeBoldParagraph}{%
+  \vspace{0.25\baselineskip}%
+}
+
+\newcommand{\beforeSectionHeading}{\relax}
+\newcommand{\beforeSubsectionHeading}{\relax}
+\newcommand{\beforeSubsubsectionHeading}{\relax}
+\newcommand{\beforeParagraphHeading}{%
+  \vspace{0.5\baselineskip}%
+}
+
+\newcommand{\spaceCommand}[1]{%
+  \hspace{5pt}
+}
+
+\newcommand{\beforeList}{%
+  \vspace{0.125\baselineskip}%
+}
+\newcommand{\afterList}{%
+  \vspace{0.25\baselineskip}%
+}
+
+\newlength{\habItemLen}
+\newcommand{\flexitem}[3][7mm]{%
+	\settowidth{\habItemLen}{#2~}%
+	\par%
+  \vspace{0.1\baselineskip}\hangindent=#1\hangafter=1\noindent%
+	\ifdim\habItemLen < #1%
+		\makebox[#1][l]{#2}#3%
+	\else%
+		#2 #3%
+	\fi%
+}
+
+\input{kerning}
+
+\begin{document}%
+\input{1eG41T8W7teCVt0ZSN5XZomZo7REaXigSwfJlDun6aGU}
+\end{document}
